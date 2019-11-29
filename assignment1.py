@@ -1,8 +1,8 @@
 """
 Replace the contents of this module docstring with your own details
-Name:
-Date started:
-GitHub URL:
+Name: Kyaw Soe Naing
+Date started: 29/11/2019
+GitHub URL: https://github.com/Ezra2952
 """
 
 
