@@ -26,7 +26,7 @@ for line in read_list:
     line = line.strip()
     inline = line.split(",")
     inline[1] = int(inline[1])
-# sort line into years and than movies name
+    # sort line into years and than movies name
     movies.append(inline)
     movies.sort(key=itemgetter(1, 0))
 
@@ -47,6 +47,18 @@ def main():
         else:
             print("Invalid menu choice")
             user_input = menu()
+# Write all changes data to csv file
+    Database = open(DATAFILE, "w")
+    for movie in movies:
+        movie[1] = str(movie[1])
+        text = ",".join(movie)
+        text = text + "\n"
+        Database.write(text)
+
+    Database.close()
+
+    print("{} movies saved to {}".format(len(movies), DATAFILE))
+    print("Have a nice day :)")
 
 
 # ask for the user to input and print menu
@@ -60,9 +72,9 @@ def menu():
 def all_movies():
     for i in range(len(movies)):
         if movies[i][3] == "u":
-            print("*{}. {:<35} - {:>4} ({}).".format(i + 1, movies[i][0], movies[i][1], movies[i][2]))
+            print("{}. *  {:<35} - {:>4} ({}).".format(i, movies[i][0], movies[i][1], movies[i][2]))
         else:
-            print(" {}. {:<35} - {:>4} ({}).".format(i + 1, movies[i][0], movies[i][1], movies[i][2]))
+            print("{}.    {:<35} - {:>4} ({}).".format(i, movies[i][0], movies[i][1], movies[i][2]))
 
 
 # Add new movies to list of movies.csv file
@@ -89,7 +101,7 @@ def add_movies():
     while not new_category:  # Check user input for blank
         print("Input can not be blank")
         new_category = input("Category :")
-# store user input of new data as nested list
+    # store user input of new data as nested list
     new_movies_lists = [new_name, new_year, new_category, "u"]
     movies.append(new_movies_lists)
     movies.sort(key=itemgetter(1, 0))
