@@ -16,16 +16,17 @@ Q - Quit
 # Read all data from movies.csv file
 DATAFILE = "movies.csv"
 Database = open(DATAFILE, "r")
-lines = Database.readlines()
+read_list = Database.readlines()
 # all data from csv file is stored in movies = [] as nested list
 movies = []
 Database.close()
-print("{:d} movies loaded".format(len(lines)))
-# split and sort the line into years and than movies name
-for line in lines:
+print("{:d} movies loaded".format(len(read_list)))
+# split into years and than movies name
+for line in read_list:
     line = line.strip()
     inline = line.split(",")
     inline[1] = int(inline[1])
+    # sort line into years and than movies name
     movies.append(inline)
     movies.sort(key=itemgetter(1, 0))
 
@@ -65,8 +66,30 @@ def all_movies():
 
 
 # Add new movies to list of movies.csv file
+# Check user input for blank and invalid input
 def add_movies():
-    pass
+    new_name = input("Title :")
+    while not new_name:  # Check user input for blank
+        print("Input can not be blank")
+        new_name = input("Title :")
+    # Check user input for blank, valid number and input 0
+    valid = False
+    while not valid:
+        try:
+            new_year = int(input("Year: "))
+            while new_year <= 0:
+                print("Number must be more than 0.")
+                new_year = int(input("Year: "))
+                valid = True
+            valid = True
+        except ValueError:
+            print("Invalid input, please enter a valid number.")
+
+    new_category = input("Category :")
+    while not new_category:  # Check user input for blank
+        print("Input can not be blank")
+        new_category = input("Category :")
+    # store user input of new data as nested list
 
 
 # select user watched movies to list of movies.csv file
