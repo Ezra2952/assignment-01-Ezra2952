@@ -64,7 +64,7 @@ def main():
 # ask for the user to input and print menu
 def menu():
     print(MENU)
-    user_input = input(">>>")
+    user_input = input(">>>").lower()
     return user_input
 
 
