@@ -72,9 +72,9 @@ def menu():
 def all_movies():
     for i in range(len(movies)):
         if movies[i][3] == "u":
-            print("{}. *  {:<35} - {:>4} ({}).".format(i, movies[i][0], movies[i][1], movies[i][2]))
+            print("{}. *  {:<35} - {:>4} ({}).".format(i+1, movies[i][0], movies[i][1], movies[i][2]))
         else:
-            print("{}.    {:<35} - {:>4} ({}).".format(i, movies[i][0], movies[i][1], movies[i][2]))
+            print("{}.    {:<35} - {:>4} ({}).".format(i+1, movies[i][0], movies[i][1], movies[i][2]))
     # Show how many video left to watch
     still_to_watch = count_unwatch()
     watch_movies = count_watch()
@@ -110,7 +110,7 @@ def add_movies():
     while not new_name:  # Check user input for blank
         print("Input can not be blank")
         new_name = input("Title :")
-    # Check user input for blank, valid number and input 0
+# Check user input for blank, valid number and input 0
     valid = False
     while not valid:
         try:
@@ -127,7 +127,7 @@ def add_movies():
     while not new_category:  # Check user input for blank
         print("Input can not be blank")
         new_category = input("Category :")
-    # store user input of new data as nested list
+# store user input of new data as nested list
     new_movies_lists = [new_name, new_year, new_category, "u"]
     movies.append(new_movies_lists)
     movies.sort(key=itemgetter(1, 0))
@@ -138,7 +138,34 @@ def add_movies():
 # select user watched movies to list of movies.csv file
 # exception handling for user input
 def watch_list():
-    pass
+    try:
+        valid = False
+        while not valid:
+            still_to_watch = count_unwatch()
+            if still_to_watch > 0:
+                select = int(input("Enter the number of a movie to mark as watched :"))
+                while select <= 0:
+                    print("Number must be greater than zero")
+                    select = int(input("Enter the number of a movie to mark as watched :"))
+                if select <= len(movies):
+                    select -= 1
+                    if movies[select][3] != "w":
+                        movies[select][3] = 'w'
+                        print("{:s} from {:d} watched!".format(movies[select][0], movies[select][1]))
+
+                        valid = True
+                    else:
+                        print("You have already watched {}".format(movies[select][0]))
+                        valid = True
+                else:
+                    print("Invalid movies number")
+            else:
+                print("No More movies to watch! Please add more.")
+                valid = True
+# excepting for Invalid string input
+    except ValueError:
+        print("Invalid input; enter a valid number!")
+        watch_list()
 
 
 if __name__ == '__main__':
