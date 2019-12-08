@@ -75,6 +75,14 @@ def all_movies():
             print("{}. *  {:<35} - {:>4} ({}).".format(i, movies[i][0], movies[i][1], movies[i][2]))
         else:
             print("{}.    {:<35} - {:>4} ({}).".format(i, movies[i][0], movies[i][1], movies[i][2]))
+    # Show how many video left to watch
+    still_to_watch = count_unwatch()
+    watch_movies = count_watch()
+    if still_to_watch > 0:
+        print(" {} movies watched, {} movies still to watch.".format(watch_movies, still_to_watch))
+    else:
+        print(" {} movies watched, No more movies to watch!".format(watch_movies))
+    print("")
 
 
 # count unwatch movies
