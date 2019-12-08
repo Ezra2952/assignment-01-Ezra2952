@@ -26,7 +26,7 @@ for line in read_list:
     line = line.strip()
     inline = line.split(",")
     inline[1] = int(inline[1])
-    # sort line into years and than movies name
+# sort line into years and than movies name
     movies.append(inline)
     movies.sort(key=itemgetter(1, 0))
 
@@ -89,7 +89,12 @@ def add_movies():
     while not new_category:  # Check user input for blank
         print("Input can not be blank")
         new_category = input("Category :")
-    # store user input of new data as nested list
+# store user input of new data as nested list
+    new_movies_lists = [new_name, new_year, new_category, "u"]
+    movies.append(new_movies_lists)
+    movies.sort(key=itemgetter(1, 0))
+    print("{:s} ({:s} from {:d}) added to movie ".format(new_name, new_category, new_year))
+    print("")
 
 
 # select user watched movies to list of movies.csv file
