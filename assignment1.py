@@ -4,6 +4,7 @@ Name: Kyaw Soe Naing
 Date started: 29/11/2019
 GitHub URL: https://github.com/Ezra2952/assignment-01-Ezra2952
 """
+from operator import itemgetter
 
 print("Movies To Watch 1.0 - by Kyaw Soe Naing")
 MENU = """Menu:
@@ -20,6 +21,13 @@ lines = Database.readlines()
 movies = []
 Database.close()
 print("{:d} movies loaded".format(len(lines)))
+# split and sort the line into years and than movies name
+for line in lines:
+    line = line.strip()
+    inline = line.split(",")
+    inline[1] = int(inline[1])
+    movies.append(inline)
+    movies.sort(key=itemgetter(1, 0))
 
 
 # Main Function including other many functions
@@ -49,7 +57,11 @@ def menu():
 
 # Show all movies from list of movies.csv file
 def all_movies():
-    pass
+    for i in range(len(movies)):
+        if movies[i][3] == "u":
+            print("*{}. {:<35} - {:>4} ({}).".format(i + 1, movies[i][0], movies[i][1], movies[i][2]))
+        else:
+            print(" {}. {:<35} - {:>4} ({}).".format(i + 1, movies[i][0], movies[i][1], movies[i][2]))
 
 
 # Add new movies to list of movies.csv file
