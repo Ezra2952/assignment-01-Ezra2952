@@ -47,7 +47,7 @@ def main():
         else:
             print("Invalid menu choice")
             user_input = menu()
-# Write all changes data to csv file
+    # Write all changes data to csv file
     Database = open(DATAFILE, "w")
     for movie in movies:
         movie[1] = str(movie[1])
@@ -75,6 +75,24 @@ def all_movies():
             print("{}. *  {:<35} - {:>4} ({}).".format(i, movies[i][0], movies[i][1], movies[i][2]))
         else:
             print("{}.    {:<35} - {:>4} ({}).".format(i, movies[i][0], movies[i][1], movies[i][2]))
+
+
+# count unwatch movies
+def count_unwatch():
+    still_to_watch = 0
+    for i in range(len(movies)):
+        if movies[i][3] == "u":
+            still_to_watch += 1
+    return still_to_watch
+
+
+# Count watch movies
+def count_watch():
+    watch_movies = 0
+    for i in range(len(movies)):
+        if movies[i][3] == "w":
+            watch_movies += 1
+    return watch_movies
 
 
 # Add new movies to list of movies.csv file
