@@ -12,6 +12,14 @@ A - Add new movies
 W - Watch a movie
 Q - Quit
 """
+# Read all data from movies.csv file
+DATAFILE = "movies.csv"
+Database = open(DATAFILE, "r")
+lines = Database.readlines()
+# all data from csv file is stored in movies = [] as nested list
+movies = []
+Database.close()
+print("{:d} movies loaded".format(len(lines)))
 
 
 # Main Function including other many functions
