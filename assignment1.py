@@ -16,7 +16,20 @@ Q - Quit
 
 # Main Function including other many functions
 def main():
-    pass
+    user_input = menu()
+    while user_input != "q":
+        if user_input == "l":
+            all_movies()
+            user_input = menu()
+        elif user_input == "a":
+            add_movies()
+            user_input = menu()
+        elif user_input == "w":
+            watch_list()
+            user_input = menu()
+        else:
+            print("Invalid menu choice")
+            user_input = menu()
 
 
 # ask for the user to input and print menu
@@ -24,6 +37,22 @@ def menu():
     print(MENU)
     user_input = input(">>>")
     return user_input
+
+
+# Show all movies from list of movies.csv file
+def all_movies():
+    pass
+
+
+# Add new movies to list of movies.csv file
+def add_movies():
+    pass
+
+
+# select user watched movies to list of movies.csv file
+# exception handling for user input
+def watch_list():
+    pass
 
 
 if __name__ == '__main__':
